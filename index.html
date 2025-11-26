@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon AI - Your Learning Navigator</title>
+
+    <!-- Preconnect to API domains for faster connection -->
+    <link rel="preconnect" href="https://generativelanguage.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://pyzgwbnfwxizzjhlystm.supabase.co" crossorigin>
+    
+    <link rel="dns-prefetch" href="https://generativelanguage.googleapis.com">
+    <link rel="dns-prefetch" href="https://pyzgwbnfwxizzjhlystm.supabase.co">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&family=Orbitron:wght@700&family=Cutive+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Ionicons for UI icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* blue-500 */
+            --secondary-color: #2563eb; /* blue-600 */
+            --accent-color: #f59e0b; /* amber-500 */
+            --primary-glow: var(--primary-color);
+            --secondary-glow: var(--secondary-color);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent; /* Let Vanta show through */
+            color: #0f172a; /* slate-900 */
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .suggestion-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .suggestion-card:hover {
+            transform: perspective(1000px) translateY(-8px) rotateX(5deg) scale(1.03);
+            box-shadow: 0 15px 30px rgba(31, 38, 135, 0.2);
+        }
+
+        .dynamic-button {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 9999px;
+            padding: 0.75rem 2.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .dynamic-button:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 118, 255, 0.23);
+        }
+        .dynamic-button:disabled {
+            filter: grayscale(80%);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        
+        .pill-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db; /* gray-300 */
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+            background-color: #f9fafb; /* gray-50 */
+            color: #374151; /* gray-700 */
+        }
+        .pill-button.selected {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-color: transparent;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+        }
+        .pill-button:not(.selected):hover {
+            background-color: #f3f4f6; /* gray-100 */
+            border-color: #9ca3af; /* gray-400 */
+        }
+
+        .flashcard.is-flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        .flashcard-front, .flashcard-back {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+        
+        /* Custom Utilities */
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* 3D Intro Animation */
+        @keyframes intro-fly-in {
+            from {
+                opacity: 0;
+                transform: perspective(800px) rotateX(-45deg) translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: perspective(800px) rotateX(0deg) translateY(0);
+            }
+        }
+        .intro-anim-h1 { animation: intro-fly-in 1.5s ease-out forwards; }
+        .intro-anim-p { animation: intro-fly-in 1.5s ease-out 0.5s forwards; }
+
+        /* 3D Loader Animation */
+        @keyframes cube-rotate {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "@google/genai": "https://esm.sh/@google/genai@0.14.0",
+    "recharts": "https://esm.sh/recharts@2.12.7?external=react,react-dom",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.43.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
