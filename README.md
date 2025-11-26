@@ -1,20 +1,62 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Horizon AI
 
-# Run and deploy your AI Studio app
+AI-powered learner profiling and personalized recommendation engine for scalable, outcome-driven education.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/drive/1BqH8Iw-01djCg_UrNjILLT4F5gWyRkjS
+## 🚀 Overview
 
-## Run Locally
+Horizon AI is a web-based platform that analyzes learner data to build dynamic learner profiles and generate personalized learning paths, helping institutions, trainers, and students move from one-size-fits-all teaching to data-driven, adaptive learning experiences.
 
-**Prerequisites:**  Node.js
+---
 
+## ✨ Key Features
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- Learner profiling using behavioral, performance, and contextual data  
+- Personalized recommendations for courses, modules, and skill paths  
+- Support for vocational and skill-based education use cases  
+- Admin dashboard for institutions and trainers  
+- Analytics for engagement, progression, and outcomes  
+- Secure, role-based access for learners, mentors, and admins  
+
+---
+
+## 🧩 Core Modules
+
+- **Learner Profiling Engine**  
+  - Captures assessments, activity logs, and learning behavior  
+  - Builds a continuous, updatable learner profile  
+
+- **Recommendation Engine**  
+  - Suggests courses, modules, and resources based on profile  
+  - Adapts recommendations over time as performance changes  
+
+- **Admin & Mentor Dashboard**  
+  - View learner cohorts, risk flags, and progress  
+  - Assign custom interventions and recommendations  
+
+- **Analytics & Reporting**  
+  - Track completion rates, learning paths, and gaps  
+  - Exportable reports for decision-makers  
+
+---
+
+## 🏗️ Architecture (High-level)
+
+- **Frontend**: React / Vite-based SPA  
+- **Backend**: Node.js / Express (or similar REST API)  
+- **Database**: SQL/NoSQL store for learners, courses, and events  
+- **Auth**: Token-based authentication with role-based access  
+- **AI/ML Layer**: Model(s) for profiling and recommendation integrated behind API endpoints  
+
+*(Update this section with the exact stack you are using.)*
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, TypeScript, Vite, TailwindCSS (or your UI framework)  
+- **Backend**: Node.js, Express / Fastify (or similar)  
+- **Database**: PostgreSQL / Supabase / MongoDB  
+- **AI/ML**: Hosted or custom models exposed via API  
+- **DevOps**: GitHub for version control, CI/CD and chosen hosting (Render, Vercel, etc.)  
